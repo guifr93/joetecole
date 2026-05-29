@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Joeteco.le</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Joeteco.le</h1>
+
+  <p id="tentativasTexto">Tentativas restantes: 5</p>
+
+  <input
+    id="guessInput"
+    list="listaPersonagens"
+    placeholder="Digite o nome do personagem"
+  >
+
+  <datalist id="listaPersonagens"></datalist>
+
+  <button id="botaoTentar" onclick="jogar()">Tentar</button>
+
+  <table id="resultado">
+    <tr>
+      <th>Nome</th>
+      <th>Tipo</th>
+      <th>Espécie</th>
+      <th>Popularidade</th>
+      <th>Inteligência</th>
+      <th>Filme</th>
+      <th>Imagem</th>
+    </tr>
+  </table>
+
+  <div id="compartilhar">
+    <h3>Compartilhe seu resultado:</h3>
+
+    <textarea id="textoCompartilhar" rows="8" cols="40" readonly></textarea>
+
+    <br>
+
+    <button onclick="copiarResultado()">Copiar resultado</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
