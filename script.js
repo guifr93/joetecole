@@ -189,12 +189,39 @@ const secreto =
   personagens[Math.floor(Math.random() * personagens.length)];
 
 
-const lista = document.getElementById("listaPersonagens");
+const input = document.getElementById("guessInput");
+const sugestoes = document.getElementById("sugestoes");
 
-personagens.forEach(personagem => {
-  const option = document.createElement("option");
-  option.value = personagem.nome;
-  lista.appendChild(option);
+input.addEventListener("input", () => {
+
+  const texto = input.value.trim().toLowerCase();
+
+  sugestoes.innerHTML = "";
+
+  if (texto.length < 3) {
+    return;
+  }
+
+  const correspondencias = personagens.filter(p =>
+    p.nome.toLowerCase().includes(texto)
+  );
+
+  correspondencias.forEach(personagem => {
+
+    const div = document.createElement("div");
+
+    div.className = "sugestao";
+    div.textContent = personagem.nome;
+
+    div.onclick = () => {
+      input.value = personagem.nome;
+      sugestoes.innerHTML = "";
+    };
+
+    sugestoes.appendChild(div);
+
+  });
+
 });
 
 function jogar() {
@@ -388,3 +415,11 @@ function copiarResultado() {
 
   alert("Resultado copiado!");
 }
+
+document.addEventListener("click", (event) => {
+
+  if (!event.target.closest(".autocomplete-container")) {
+    sugestoes.innerHTML = "";
+  }
+
+});
