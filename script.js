@@ -108,7 +108,7 @@ const personagens = [
     especie: "Palhaço",
     popularidade: 1,
     inteligencia: 5,
-    filme: true,
+    filme: false,
     imagem: "images/Nemo.JPG"
   },
   {
@@ -121,7 +121,7 @@ const personagens = [
     imagem: "images/Pantufo.JPG"
   },
   {
-    nome: "Pascual Lebrete",
+    nome: "Pascoal Lebrete",
     tipo: "Mamífero",
     especie: "Lebre",
     popularidade: 5,
