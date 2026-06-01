@@ -11,14 +11,18 @@
 
   <p id="tentativasTexto">Tentativas restantes: 5</p>
 
+ <div class="autocomplete-container">
+
   <input
+    type="text"
     id="guessInput"
-    list="listaPersonagens"
     placeholder="Digite o nome do personagem"
+    autocomplete="off"
   >
 
-  <datalist id="listaPersonagens"></datalist>
+  <div id="sugestoes"></div>
 
+</div>
   <button id="botaoTentar" onclick="jogar()">Tentar</button>
 
   <table id="resultado">
