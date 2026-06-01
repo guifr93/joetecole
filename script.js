@@ -362,15 +362,15 @@ function adicionarLinhaTabela(personagem, ehRespostaFinal) {
   adicionarCelula(linha, personagem.tipo, personagem.tipo === secreto.tipo);
   adicionarCelula(linha, personagem.especie, personagem.especie === secreto.especie);
 
-  let alturaTexto = personagem.altura;
+  let popularidadeTexto = personagem.popularidade;
 
-  if (personagem.altura < secreto.altura) {
-    alturaTexto += " ↑";
-  } else if (personagem.altura > secreto.altura) {
-    alturaTexto += " ↓";
+  if (personagem.popularidade < secreto.popularidade) {
+    popularidadeTexto += " ↑";
+  } else if (personagem.popularidade > secreto.popularidade) {
+    popularidadeTexto += " ↓";
   }
 
-  adicionarCelula(linha, alturaTexto, personagem.altura === secreto.altura);
+  adicionarCelula(linha, popularidadeTexto, personagem.popularidade === secreto.popularidade);
 
   let inteligenciaTexto = personagem.inteligencia;
 
