@@ -105,3 +105,11 @@ textarea {
   padding: 10px;
   resize: none;
 }
+
+#estatisticas {
+  margin-top: 30px;
+  padding: 15px;
+  background-color: white;
+  border: 1px solid #ccc;
+  width: fit-content;
+}
