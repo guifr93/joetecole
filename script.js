@@ -185,14 +185,21 @@ const personagens = [
   }
 ];
 
-const secreto =
-  personagens[Math.floor(Math.random() * personagens.length)];
-
+const hoje = obterDataHoje();
+const secreto = obterPersonagemDoDia();
 
 const input = document.getElementById("guessInput");
 const sugestoes = document.getElementById("sugestoes");
 
+iniciarJogo();
+
 input.addEventListener("input", mostrarSugestoes);
+
+input.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    jogar();
+  }
+});
 
 document.addEventListener("click", function (event) {
   if (!event.target.closest(".autocomplete-container")) {
@@ -200,11 +207,49 @@ document.addEventListener("click", function (event) {
   }
 });
 
-input.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    jogar();
+function iniciarJogo() {
+  document.getElementById("dataDesafio").innerText =
+    "Desafio diário: " + hoje;
+
+  atualizarEstatisticasNaTela();
+
+  const jogoSalvo = JSON.parse(
+    localStorage.getItem("characterdleJogoDiario")
+  );
+
+  if (jogoSalvo && jogoSalvo.data === hoje) {
+    restaurarJogoSalvo(jogoSalvo);
   }
-});
+}
+
+function obterDataHoje() {
+  const data = new Date();
+
+  const ano = data.getFullYear();
+  const mes = String(data.getMonth() + 1).padStart(2, "0");
+  const dia = String(data.getDate()).padStart(2, "0");
+
+  return `${ano}-${mes}-${dia}`;
+}
+
+function obterPersonagemDoDia() {
+  const dataInicial = new Date("2026-01-01T00:00:00");
+
+  const partes = hoje.split("-");
+  const dataAtual = new Date(
+    Number(partes[0]),
+    Number(partes[1]) - 1,
+    Number(partes[2])
+  );
+
+  const diferencaEmDias = Math.floor(
+    (dataAtual - dataInicial) / (1000 * 60 * 60 * 24)
+  );
+
+  const indice = diferencaEmDias % personagens.length;
+
+  return personagens[indice];
+}
 
 function mostrarSugestoes() {
   const texto = input.value.trim().toLowerCase();
@@ -258,6 +303,7 @@ function jogar() {
   tentativas++;
 
   adicionarLinhaTabela(tentativa, false);
+  salvarEstadoParcial();
 
   atualizarTentativas();
 
@@ -267,6 +313,8 @@ function jogar() {
   if (tentativa.nome === secreto.nome) {
     jogoEncerrado = true;
 
+    salvarResultadoDiario(true);
+    atualizarEstatisticas(true, tentativas);
     encerrarJogo(true);
 
     alert(
@@ -283,6 +331,8 @@ function jogar() {
 
     adicionarLinhaTabela(secreto, true);
 
+    salvarResultadoDiario(false);
+    atualizarEstatisticas(false, null);
     encerrarJogo(false);
 
     alert(
@@ -316,18 +366,18 @@ function adicionarLinhaTabela(personagem, ehRespostaFinal) {
     personagem.especie === secreto.especie
   );
 
-  let popularidadeTexto = personagem.popularidade;
+  let alturaTexto = personagem.altura;
 
-  if (personagem.popularidade < secreto.popularidade) {
-    popularidadeTexto += " ↑";
-  } else if (personagem.popularidade > secreto.popularidade) {
-    popularidadeTexto += " ↓";
+  if (personagem.altura < secreto.altura) {
+    alturaTexto += " ↑";
+  } else if (personagem.altura > secreto.altura) {
+    alturaTexto += " ↓";
   }
 
   adicionarCelula(
     linha,
-    popularidadeTexto,
-    personagem.popularidade === secreto.popularidade
+    alturaTexto,
+    personagem.altura === secreto.altura
   );
 
   let inteligenciaTexto = personagem.inteligencia;
@@ -378,6 +428,154 @@ function encerrarJogo(venceu) {
   input.disabled = true;
 
   mostrarCompartilhamento(venceu);
+  atualizarEstatisticasNaTela();
+}
+
+function salvarEstadoParcial() {
+  const nomesTentativas = obterNomesDasTentativas();
+
+  const jogoSalvo = {
+    data: hoje,
+    tentativas: nomesTentativas,
+    encerrado: false,
+    venceu: false
+  };
+
+  localStorage.setItem(
+    "characterdleJogoDiario",
+    JSON.stringify(jogoSalvo)
+  );
+}
+
+function salvarResultadoDiario(venceu) {
+  const nomesTentativas = obterNomesDasTentativas();
+
+  const jogoSalvo = {
+    data: hoje,
+    tentativas: nomesTentativas,
+    encerrado: true,
+    venceu: venceu
+  };
+
+  localStorage.setItem(
+    "characterdleJogoDiario",
+    JSON.stringify(jogoSalvo)
+  );
+}
+
+function obterNomesDasTentativas() {
+  const linhas = document.querySelectorAll("#resultado tr");
+  const nomes = [];
+
+  for (let i = 1; i < linhas.length; i++) {
+    const linha = linhas[i];
+
+    if (linha.dataset.respostaFinal === "true") {
+      continue;
+    }
+
+    const primeiraCelula = linha.querySelector("td");
+
+    if (primeiraCelula) {
+      nomes.push(primeiraCelula.innerText);
+    }
+  }
+
+  return nomes;
+}
+
+function restaurarJogoSalvo(jogoSalvo) {
+  jogoSalvo.tentativas.forEach(nomePersonagem => {
+    const personagem = personagens.find(p => p.nome === nomePersonagem);
+
+    if (personagem) {
+      adicionarLinhaTabela(personagem, false);
+    }
+  });
+
+  tentativas = jogoSalvo.tentativas.length;
+
+  atualizarTentativas();
+
+  if (jogoSalvo.encerrado) {
+    jogoEncerrado = true;
+
+    if (!jogoSalvo.venceu) {
+      adicionarLinhaTabela(secreto, true);
+    }
+
+    encerrarJogo(jogoSalvo.venceu);
+  }
+}
+
+function obterEstatisticas() {
+  let estatisticas = JSON.parse(
+    localStorage.getItem("characterdleEstatisticas")
+  );
+
+  if (!estatisticas) {
+    estatisticas = {
+      diasJogados: 0,
+      vitorias: 0,
+      derrotas: 0,
+      acertosPorTentativa: {
+        1: 0,
+        2: 0,
+        3: 0,
+        4: 0,
+        5: 0
+      }
+    };
+  }
+
+  return estatisticas;
+}
+
+function atualizarEstatisticas(venceu, numeroTentativa) {
+  const estatisticas = obterEstatisticas();
+
+  estatisticas.diasJogados++;
+
+  if (venceu) {
+    estatisticas.vitorias++;
+
+    estatisticas.acertosPorTentativa[numeroTentativa]++;
+  } else {
+    estatisticas.derrotas++;
+  }
+
+  localStorage.setItem(
+    "characterdleEstatisticas",
+    JSON.stringify(estatisticas)
+  );
+}
+
+function atualizarEstatisticasNaTela() {
+  const estatisticas = obterEstatisticas();
+
+  document.getElementById("statDias").innerText =
+    estatisticas.diasJogados;
+
+  document.getElementById("statVitorias").innerText =
+    estatisticas.vitorias;
+
+  document.getElementById("statDerrotas").innerText =
+    estatisticas.derrotas;
+
+  document.getElementById("stat1").innerText =
+    estatisticas.acertosPorTentativa[1];
+
+  document.getElementById("stat2").innerText =
+    estatisticas.acertosPorTentativa[2];
+
+  document.getElementById("stat3").innerText =
+    estatisticas.acertosPorTentativa[3];
+
+  document.getElementById("stat4").innerText =
+    estatisticas.acertosPorTentativa[4];
+
+  document.getElementById("stat5").innerText =
+    estatisticas.acertosPorTentativa[5];
 }
 
 function mostrarCompartilhamento(venceu) {
@@ -389,7 +587,7 @@ function mostrarCompartilhamento(venceu) {
 }
 
 function gerarResultadoCompartilhavel(venceu) {
-  let texto = "Characterdle\n";
+  let texto = "Characterdle " + hoje + "\n";
 
   if (venceu) {
     texto += tentativas + "/" + maxTentativas + "\n\n";
