@@ -1,3 +1,6 @@
+console.log("Personagem do dia:", secreto.nome);
+console.log("Data:", hoje);
+
 const maxTentativas = 5;
 let tentativas = 0;
 let jogoEncerrado = false;
@@ -233,14 +236,10 @@ function obterDataHoje() {
 }
 
 function obterPersonagemDoDia() {
-  const dataInicial = new Date("2026-01-01T00:00:00");
+  const dataInicial = new Date(2026, 0, 1);
+  const dataAtual = new Date();
 
-  const partes = hoje.split("-");
-  const dataAtual = new Date(
-    Number(partes[0]),
-    Number(partes[1]) - 1,
-    Number(partes[2])
-  );
+  dataAtual.setHours(0, 0, 0, 0);
 
   const diferencaEmDias = Math.floor(
     (dataAtual - dataInicial) / (1000 * 60 * 60 * 24)
@@ -250,7 +249,6 @@ function obterPersonagemDoDia() {
 
   return personagens[indice];
 }
-
 function mostrarSugestoes() {
   const texto = input.value.trim().toLowerCase();
 
