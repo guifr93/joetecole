@@ -562,7 +562,7 @@ function mostrarCompartilhamento(venceu) {
 }
 
 function gerarResultadoCompartilhavel(venceu) {
-  let texto = "Characterdle " + hoje + "\n";
+  let texto = "Joeteco.le " + hoje + "\n";
 
   if (venceu) {
     texto += tentativas + "/" + maxTentativas + "\n\n";
