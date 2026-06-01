@@ -1,6 +1,3 @@
-console.log("Personagem do dia:", secreto.nome);
-console.log("Data:", hoje);
-
 const maxTentativas = 5;
 let tentativas = 0;
 let jogoEncerrado = false;
@@ -191,39 +188,31 @@ const personagens = [
 const hoje = obterDataHoje();
 const secreto = obterPersonagemDoDia();
 
-const input = document.getElementById("guessInput");
-const sugestoes = document.getElementById("sugestoes");
+let input;
+let sugestoes;
 
-iniciarJogo();
+document.addEventListener("DOMContentLoaded", function () {
+  input = document.getElementById("guessInput");
+  sugestoes = document.getElementById("sugestoes");
 
-input.addEventListener("input", mostrarSugestoes);
+  iniciarJogo();
 
-input.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    jogar();
-  }
+  input.addEventListener("input", mostrarSugestoes);
+
+  input.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      jogar();
+    }
+  });
+
+  document.addEventListener("click", function (event) {
+    if (!event.target.closest(".autocomplete-container")) {
+      limparSugestoes();
+    }
+  });
+
+  console.log("Personagem do dia:", secreto.nome);
 });
-
-document.addEventListener("click", function (event) {
-  if (!event.target.closest(".autocomplete-container")) {
-    limparSugestoes();
-  }
-});
-
-function iniciarJogo() {
-  document.getElementById("dataDesafio").innerText =
-    "Desafio diário: " + hoje;
-
-  atualizarEstatisticasNaTela();
-
-  const jogoSalvo = JSON.parse(
-    localStorage.getItem("characterdleJogoDiario")
-  );
-
-  if (jogoSalvo && jogoSalvo.data === hoje) {
-    restaurarJogoSalvo(jogoSalvo);
-  }
-}
 
 function obterDataHoje() {
   const data = new Date();
@@ -249,6 +238,24 @@ function obterPersonagemDoDia() {
 
   return personagens[indice];
 }
+
+function iniciarJogo() {
+  document.getElementById("dataDesafio").innerText =
+    "Desafio diário: " + hoje;
+
+  atualizarEstatisticasNaTela();
+
+  const jogoSalvo = JSON.parse(
+    localStorage.getItem("characterdleJogoDiario")
+  );
+
+  if (jogoSalvo && jogoSalvo.data === hoje) {
+    restaurarJogoSalvo(jogoSalvo);
+  } else {
+    atualizarTentativas();
+  }
+}
+
 function mostrarSugestoes() {
   const texto = input.value.trim().toLowerCase();
 
@@ -352,17 +359,8 @@ function adicionarLinhaTabela(personagem, ehRespostaFinal) {
 
   linha.insertCell().innerText = personagem.nome;
 
-  adicionarCelula(
-    linha,
-    personagem.tipo,
-    personagem.tipo === secreto.tipo
-  );
-
-  adicionarCelula(
-    linha,
-    personagem.especie,
-    personagem.especie === secreto.especie
-  );
+  adicionarCelula(linha, personagem.tipo, personagem.tipo === secreto.tipo);
+  adicionarCelula(linha, personagem.especie, personagem.especie === secreto.especie);
 
   let alturaTexto = personagem.altura;
 
@@ -372,11 +370,7 @@ function adicionarLinhaTabela(personagem, ehRespostaFinal) {
     alturaTexto += " ↓";
   }
 
-  adicionarCelula(
-    linha,
-    alturaTexto,
-    personagem.altura === secreto.altura
-  );
+  adicionarCelula(linha, alturaTexto, personagem.altura === secreto.altura);
 
   let inteligenciaTexto = personagem.inteligencia;
 
@@ -430,13 +424,12 @@ function encerrarJogo(venceu) {
 }
 
 function salvarEstadoParcial() {
-  const nomesTentativas = obterNomesDasTentativas();
-
   const jogoSalvo = {
     data: hoje,
-    tentativas: nomesTentativas,
+    tentativas: obterNomesDasTentativas(),
     encerrado: false,
-    venceu: false
+    venceu: false,
+    estatisticaRegistrada: false
   };
 
   localStorage.setItem(
@@ -446,13 +439,12 @@ function salvarEstadoParcial() {
 }
 
 function salvarResultadoDiario(venceu) {
-  const nomesTentativas = obterNomesDasTentativas();
-
   const jogoSalvo = {
     data: hoje,
-    tentativas: nomesTentativas,
+    tentativas: obterNomesDasTentativas(),
     encerrado: true,
-    venceu: venceu
+    venceu: venceu,
+    estatisticaRegistrada: true
   };
 
   localStorage.setItem(
@@ -472,10 +464,10 @@ function obterNomesDasTentativas() {
       continue;
     }
 
-    const primeiraCelula = linha.querySelector("td");
+    const celulaNome = linha.querySelector("td");
 
-    if (primeiraCelula) {
-      nomes.push(primeiraCelula.innerText);
+    if (celulaNome) {
+      nomes.push(celulaNome.innerText);
     }
   }
 
@@ -536,7 +528,6 @@ function atualizarEstatisticas(venceu, numeroTentativa) {
 
   if (venceu) {
     estatisticas.vitorias++;
-
     estatisticas.acertosPorTentativa[numeroTentativa]++;
   } else {
     estatisticas.derrotas++;
@@ -551,29 +542,15 @@ function atualizarEstatisticas(venceu, numeroTentativa) {
 function atualizarEstatisticasNaTela() {
   const estatisticas = obterEstatisticas();
 
-  document.getElementById("statDias").innerText =
-    estatisticas.diasJogados;
+  document.getElementById("statDias").innerText = estatisticas.diasJogados;
+  document.getElementById("statVitorias").innerText = estatisticas.vitorias;
+  document.getElementById("statDerrotas").innerText = estatisticas.derrotas;
 
-  document.getElementById("statVitorias").innerText =
-    estatisticas.vitorias;
-
-  document.getElementById("statDerrotas").innerText =
-    estatisticas.derrotas;
-
-  document.getElementById("stat1").innerText =
-    estatisticas.acertosPorTentativa[1];
-
-  document.getElementById("stat2").innerText =
-    estatisticas.acertosPorTentativa[2];
-
-  document.getElementById("stat3").innerText =
-    estatisticas.acertosPorTentativa[3];
-
-  document.getElementById("stat4").innerText =
-    estatisticas.acertosPorTentativa[4];
-
-  document.getElementById("stat5").innerText =
-    estatisticas.acertosPorTentativa[5];
+  document.getElementById("stat1").innerText = estatisticas.acertosPorTentativa[1];
+  document.getElementById("stat2").innerText = estatisticas.acertosPorTentativa[2];
+  document.getElementById("stat3").innerText = estatisticas.acertosPorTentativa[3];
+  document.getElementById("stat4").innerText = estatisticas.acertosPorTentativa[4];
+  document.getElementById("stat5").innerText = estatisticas.acertosPorTentativa[5];
 }
 
 function mostrarCompartilhamento(venceu) {
@@ -605,11 +582,7 @@ function gerarResultadoCompartilhavel(venceu) {
     const celulas = linha.querySelectorAll("td");
 
     for (let j = 1; j <= 5; j++) {
-      if (celulas[j].className === "correto") {
-        texto += "🟩";
-      } else {
-        texto += "⬛";
-      }
+      texto += celulas[j].className === "correto" ? "🟩" : "⬛";
     }
 
     texto += "\n";
