@@ -192,51 +192,66 @@ const secreto =
 const input = document.getElementById("guessInput");
 const sugestoes = document.getElementById("sugestoes");
 
-input.addEventListener("input", () => {
+input.addEventListener("input", mostrarSugestoes);
 
+document.addEventListener("click", function (event) {
+  if (!event.target.closest(".autocomplete-container")) {
+    limparSugestoes();
+  }
+});
+
+input.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    jogar();
+  }
+});
+
+function mostrarSugestoes() {
   const texto = input.value.trim().toLowerCase();
 
-  sugestoes.innerHTML = "";
+  limparSugestoes();
 
-  if (texto.length < 3) {
+  if (texto.length < 3 || jogoEncerrado) {
     return;
   }
 
-  const correspondencias = personagens.filter(p =>
-    p.nome.toLowerCase().includes(texto)
+  const correspondencias = personagens.filter(personagem =>
+    personagem.nome.toLowerCase().includes(texto)
   );
 
   correspondencias.forEach(personagem => {
-
     const div = document.createElement("div");
 
     div.className = "sugestao";
     div.textContent = personagem.nome;
 
-    div.onclick = () => {
+    div.addEventListener("click", function () {
       input.value = personagem.nome;
-      sugestoes.innerHTML = "";
-    };
+      limparSugestoes();
+      input.focus();
+    });
 
     sugestoes.appendChild(div);
-
   });
+}
 
-});
+function limparSugestoes() {
+  sugestoes.innerHTML = "";
+}
 
 function jogar() {
   if (jogoEncerrado) {
     return;
   }
 
-  const nome = document.getElementById("guessInput").value.trim();
+  const nome = input.value.trim();
 
-  const tentativa = personagens.find(p =>
-    p.nome.toLowerCase() === nome.toLowerCase()
+  const tentativa = personagens.find(personagem =>
+    personagem.nome.toLowerCase() === nome.toLowerCase()
   );
 
   if (!tentativa) {
-    alert("Personagem não encontrado");
+    alert("Personagem não encontrado. Escolha uma das sugestões da lista.");
     return;
   }
 
@@ -246,10 +261,12 @@ function jogar() {
 
   atualizarTentativas();
 
-  document.getElementById("guessInput").value = "";
+  input.value = "";
+  limparSugestoes();
 
   if (tentativa.nome === secreto.nome) {
     jogoEncerrado = true;
+
     encerrarJogo(true);
 
     alert(
@@ -358,7 +375,7 @@ function atualizarTentativas() {
 
 function encerrarJogo(venceu) {
   document.getElementById("botaoTentar").disabled = true;
-  document.getElementById("guessInput").disabled = true;
+  input.disabled = true;
 
   mostrarCompartilhamento(venceu);
 }
@@ -372,7 +389,7 @@ function mostrarCompartilhamento(venceu) {
 }
 
 function gerarResultadoCompartilhavel(venceu) {
-  let texto = "Joeteco.le\njoetecole.netlify.app\n";
+  let texto = "Characterdle\n";
 
   if (venceu) {
     texto += tentativas + "/" + maxTentativas + "\n\n";
@@ -415,11 +432,3 @@ function copiarResultado() {
 
   alert("Resultado copiado!");
 }
-
-document.addEventListener("click", (event) => {
-
-  if (!event.target.closest(".autocomplete-container")) {
-    sugestoes.innerHTML = "";
-  }
-
-});
