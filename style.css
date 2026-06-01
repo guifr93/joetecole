@@ -60,3 +60,33 @@ textarea {
   padding: 10px;
   resize: none;
 }
+
+.autocomplete-container {
+  position: relative;
+  width: 300px;
+}
+
+#guessInput {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#sugestoes {
+  position: absolute;
+  width: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  z-index: 1000;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.sugestao {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.sugestao:hover {
+  background-color: #f0f0f0;
+}
