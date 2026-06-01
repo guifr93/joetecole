@@ -9,6 +9,7 @@
 
   <h1>Characterdle</h1>
 
+  <p id="dataDesafio"></p>
   <p id="tentativasTexto">Tentativas restantes: 5</p>
 
   <div class="area-jogo">
@@ -31,21 +32,34 @@
       <th>Nome</th>
       <th>Tipo</th>
       <th>Espécie</th>
-      <th>Popularidade</th>
+      <th>Altura</th>
       <th>Inteligência</th>
-      <th>Apareceu na trilogia ORDJ</th>
+      <th>Filme</th>
       <th>Imagem</th>
     </tr>
   </table>
 
   <div id="compartilhar">
     <h3>Compartilhe seu resultado:</h3>
-
     <textarea id="textoCompartilhar" rows="8" cols="40" readonly></textarea>
-
     <br>
-
     <button onclick="copiarResultado()">Copiar resultado</button>
+  </div>
+
+  <div id="estatisticas">
+    <h3>Estatísticas</h3>
+
+    <p>Dias jogados: <span id="statDias">0</span></p>
+    <p>Vitórias: <span id="statVitorias">0</span></p>
+    <p>Derrotas: <span id="statDerrotas">0</span></p>
+
+    <h4>Acertos por tentativa</h4>
+
+    <p>1ª tentativa: <span id="stat1">0</span></p>
+    <p>2ª tentativa: <span id="stat2">0</span></p>
+    <p>3ª tentativa: <span id="stat3">0</span></p>
+    <p>4ª tentativa: <span id="stat4">0</span></p>
+    <p>5ª tentativa: <span id="stat5">0</span></p>
   </div>
 
   <script src="script.js"></script>
