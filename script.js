@@ -562,7 +562,7 @@ function mostrarCompartilhamento(venceu) {
 }
 
 function gerarResultadoCompartilhavel(venceu) {
-  let texto = "Joeteco.le " + hoje + "\n";
+  let texto = "Joeteco.le " + hoje + "\njoetecole.netlify.app\n";
 
   if (venceu) {
     texto += tentativas + "/" + maxTentativas + "\n\n";
