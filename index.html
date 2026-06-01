@@ -2,27 +2,30 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Joeteco.le</title>
+  <title>Characterdle</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h1>Joeteco.le</h1>
+  <h1>Characterdle</h1>
 
   <p id="tentativasTexto">Tentativas restantes: 5</p>
 
- <div class="autocomplete-container">
-  <input
-    type="text"
-    id="guessInput"
-    placeholder="Digite o nome do personagem"
-    autocomplete="off"
-  >
+  <div class="area-jogo">
+    <div class="autocomplete-container">
+      <input
+        type="text"
+        id="guessInput"
+        placeholder="Digite o nome do personagem"
+        autocomplete="off"
+      >
 
-  <div id="sugestoes"></div>
-</div>
+      <div id="sugestoes"></div>
+    </div>
 
-<button id="botaoTentar" onclick="jogar()">Tentar</button>
+    <button id="botaoTentar" onclick="jogar()">Tentar</button>
+  </div>
+
   <table id="resultado">
     <tr>
       <th>Nome</th>
@@ -30,7 +33,7 @@
       <th>Espécie</th>
       <th>Popularidade</th>
       <th>Inteligência</th>
-      <th>Filme</th>
+      <th>Apareceu na trilogia ORDJ</th>
       <th>Imagem</th>
     </tr>
   </table>
