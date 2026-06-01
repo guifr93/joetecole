@@ -182,6 +182,128 @@ const personagens = [
     inteligencia: 7,
     filme: true,
     imagem: "images/yoshi.JPG"
+  },
+   {
+    nome: "Joeteco",
+    tipo: "Mamífero",
+    especie: "Cachorro",
+    popularidade: 8,
+    inteligencia: 4,
+    filme: true,
+    imagem: "images/bird.png"
+  },
+  
+   {
+    nome: "Bileco",
+    tipo: "Mamífero",
+    especie: "Cachorro",
+    popularidade: 7,
+    inteligencia: 2,
+    filme: true,
+    imagem: "images/bird.png"
+  },
+  
+   {
+    nome: "Biloco",
+    tipo: "Mamífero",
+    especie: "Cachorro",
+    popularidade: 8,
+    inteligencia: 1,
+    filme: true,
+    imagem: "images/bird.png"
+  },
+  
+   {
+    nome: "Bituto",
+    tipo: "Mamífero",
+    especie: "Cachorro",
+    popularidade: 4,
+    inteligencia: 5,
+    filme: true,
+    imagem: "images/bird.png"
+  },
+  
+   {
+    nome: "Diugungu",
+    tipo: "Mamífero",
+    especie: "Urso Polar",
+    popularidade: 5,
+    inteligencia: 7,
+    filme: false,
+    imagem: "images/bird.png"
+  },
+  
+   {
+    nome: "Dentinho Dente",
+    tipo: "Mamífero",
+    especie: "Morsa",
+    popularidade: 7,
+    inteligencia: 7,
+    filme: false,
+    imagem: "images/bird.png"
+  },
+  
+   {
+    nome: "Bib Duá",
+    tipo: "Mamífero",
+    especie: "Tamanduá",
+    popularidade: 4,
+    inteligencia: 6,
+    filme: false,
+    imagem: "images/bird.png"
+  },
+
+  
+   {
+    nome: "Bib Uso",
+    tipo: "Mamífero",
+    especie: "Urso",
+    popularidade: 2,
+    inteligencia: 6,
+    filme: false,
+    imagem: "images/bird.png"
+  },
+  
+   {
+    nome: "Foot-lix",
+    tipo: "Ave",
+    especie: "Galo",
+    popularidade: 2,
+    inteligencia: 5,
+    filme: false,
+    imagem: "images/bird.png"
+  },
+
+  
+   {
+    nome: "Bob Tucano",
+    tipo: "Ave",
+    especie: "Tucano",
+    popularidade: 5,
+    inteligencia: 5,
+    filme: false,
+    imagem: "images/bird.png"
+  },
+  
+   {
+    nome: "Pipoca",
+    tipo: "Mamífero",
+    especie: "Cachorro",
+    popularidade: 6,
+    inteligencia: 8,
+    filme: false,
+    imagem: "images/bird.png"
+  },
+
+  
+   {
+    nome: "Patric 2",
+    tipo: "Invertebrado",
+    especie: "Estrela-do-mar",
+    popularidade: 3,
+    inteligencia: 3,
+    filme: false,
+    imagem: "images/bird.png"
   }
 ];
 
