@@ -4,29 +4,38 @@ let jogoEncerrado = false;
 
 const personagens = [
   {
-    nome: "Bily",
-    tipo: "Mamífero",
-    especie: "Cachorro",
-    popularidade: 9,
-    inteligencia: 3,
-    filme: true,
-    imagem: "images/bily.JPG"
-  },
-  {
-    nome: "Bilito",
-    tipo: "Mamífero",
-    especie: "Cachorro",
-    popularidade: 8,
-    inteligencia: 4,
-    filme: true,
-    imagem: "images/bilito.JPG"
-  },
-  {
-    nome: "Joe",
+    nome: "Bily Joe",
     tipo: "Mamífero",
     especie: "Cachorro",
     popularidade: 9,
     inteligencia: 2,
+    altura: 25,
+    forca: 3,
+    agressividade: 4,
+    filme: true,
+    imagem: "images/bily.JPG"
+  },
+  {
+    nome: "Bilito Joe",
+    tipo: "Mamífero",
+    especie: "Cachorro",
+    popularidade: 8,
+    inteligencia: 2,
+    altura: 24,
+    forca: 1,
+    agressividade: 1,
+    filme: true,
+    imagem: "images/bilito.JPG"
+  },
+  {
+    nome: "Joe Au",
+    tipo: "Mamífero",
+    especie: "Cachorro",
+    popularidade: 9,
+    inteligencia: 4,
+    altura: 32,
+    forca: 8,
+    agressividade: 2,
     filme: true,
     imagem: "images/joe.png"
   },
@@ -34,8 +43,11 @@ const personagens = [
     nome: "Dr. Léo Pardo",
     tipo: "Mamífero",
     especie: "Leopardo",
-    popularidade: 8,
-    inteligencia: 9,
+    popularidade: 9,
+    inteligencia: 10,
+    altura: 20,
+    forca: 8,
+    agressividade: 5,
     filme: true,
     imagem: "images/leopardo.JPG"
   },
@@ -44,34 +56,46 @@ const personagens = [
     tipo: "Mamífero",
     especie: "Coelho",
     popularidade: 10,
-    inteligencia: 5,
+    inteligencia: 6,
+    altura: 25,
+    forca: 1,
+    agressividade: 10,
     filme: true,
     imagem: "images/bobcoelho.JPG"
   },
   {
-    nome: "Bong Bony",
+    nome: "Bong Bonny",
     tipo: "Mamífero",
     especie: "Cachorro",
-    popularidade: 5,
-    inteligencia: 7,
+    popularidade: 6,
+    inteligencia: 6,
+    altura: 15,
+    forca: 5,
+    agressividade: 3,
     filme: false,
     imagem: "images/bong.JPG"
   },
   {
-    nome: "Esbongrevo",
+    nome: "Esbongrevo Cambrevo",
     tipo: "Mamífero",
     especie: "Coelho",
-    popularidade: 5,
-    inteligencia: 6,
+    popularidade: 4,
+    inteligencia: 5,
+    altura: 9,
+    forca: 1,
+    agressividade: 5,
     filme: false,
     imagem: "images/Esbongrevo.JPG"
   },
   {
-    nome: "Gumercindo",
+    nome: "Gumercindo Charrete",
     tipo: "Mamífero",
     especie: "Burro",
-    popularidade: 5,
-    inteligencia: 8,
+    popularidade: 6,
+    inteligencia: 5,
+    altura: 18,
+    forca: 9,
+    agressividade: 3,
     filme: false,
     imagem: "images/Gumercindo.JPG"
   },
@@ -81,6 +105,9 @@ const personagens = [
     especie: "Cachorro",
     popularidade: 0,
     inteligencia: 6,
+    altura: 7,
+    forca: 8,
+    agressividade: 3,
     filme: false,
     imagem: "images/Kako.JPG"
   },
@@ -90,6 +117,9 @@ const personagens = [
     especie: "Cachorro",
     popularidade: 3,
     inteligencia: 7,
+    altura: 35,
+    forca: 9,
+    agressividade: 5,
     filme: false,
     imagem: "images/Kiko.JPG"
   },
@@ -99,6 +129,9 @@ const personagens = [
     especie: "Cachorro",
     popularidade: 7,
     inteligencia: 8,
+    altura: 21,
+    forca: 7,
+    agressividade: 6,
     filme: false,
     imagem: "images/lilu.JPG"
   },
@@ -108,6 +141,9 @@ const personagens = [
     especie: "Palhaço",
     popularidade: 1,
     inteligencia: 5,
+    altura: 17,
+    forca: 1,
+    agressividade: 1,
     filme: false,
     imagem: "images/Nemo.JPG"
   },
@@ -117,6 +153,9 @@ const personagens = [
     especie: "Cachorro",
     popularidade: 1,
     inteligencia: 5,
+    altura: 21,
+    forca: 7,
+    agressividade: 2,
     filme: false,
     imagem: "images/Pantufo.JPG"
   },
@@ -124,8 +163,11 @@ const personagens = [
     nome: "Pascoal Lebrete",
     tipo: "Mamífero",
     especie: "Lebre",
-    popularidade: 5,
-    inteligencia: 7,
+    popularidade: 6,
+    inteligencia: 8,
+    altura: 13,
+    forca: 4,
+    agressividade: 2,
     filme: false,
     imagem: "images/pascoal.JPG"
   },
@@ -133,8 +175,11 @@ const personagens = [
     nome: "Scooby Dog",
     tipo: "Mamífero",
     especie: "Cachorro",
-    popularidade: 4,
-    inteligencia: 7,
+    popularidade: 5,
+    inteligencia: 6,
+    altura: 25,
+    forca: 7,
+    agressividade: 6,
     filme: false,
     imagem: "images/Scooby.JPG"
   },
@@ -143,7 +188,10 @@ const personagens = [
     tipo: "Mamífero",
     especie: "Cachorro",
     popularidade: 7,
-    inteligencia: 8,
+    inteligencia: 7,
+    altura: 17,
+    forca: 5,
+    agressividade: 4,
     filme: false,
     imagem: "images/Scott.JPG"
   },
@@ -151,8 +199,11 @@ const personagens = [
     nome: "Ted Coelho",
     tipo: "Mamífero",
     especie: "Coelho",
-    popularidade: 6,
+    popularidade: 5,
     inteligencia: 7,
+    altura: 22,
+    forca: 8,
+    agressividade: 6,
     filme: false,
     imagem: "images/ted.JPG"
   },
@@ -161,7 +212,10 @@ const personagens = [
     tipo: "Mamífero",
     especie: "Tigre",
     popularidade: 8,
-    inteligencia: 8,
+    inteligencia: 5,
+    altura: 24,
+    forca: 9,
+    agressividade: 7,
     filme: true,
     imagem: "images/tiny.JPG"
   },
@@ -169,139 +223,275 @@ const personagens = [
     nome: "Trovão Raio",
     tipo: "Mamífero",
     especie: "Cachorro",
-    popularidade: 8,
+    popularidade: 7,
     inteligencia: 7,
+    altura: 29,
+    forca: 8,
+    agressividade: 7,
     filme: true,
     imagem: "images/trovao.JPG"
   },
-    {
-    nome: "Yoshi",
+  {
+    nome: "Yoshi Lebre White",
     tipo: "Mamífero",
     especie: "Lebre",
     popularidade: 8,
-    inteligencia: 7,
+    inteligencia: 8,
+    altura: 16,
+    forca: 9,
+    agressividade: 10,
     filme: true,
     imagem: "images/yoshi.JPG"
   },
-   {
-    nome: "Joeteco",
+  {
+    nome: "Joeteco Joe",
     tipo: "Mamífero",
     especie: "Cachorro",
     popularidade: 8,
     inteligencia: 4,
+    altura: 24,
+    forca: 6,
+    agressividade: 2,
     filme: true,
     imagem: "images/bird.png"
   },
-  
-   {
-    nome: "Bileco",
+  {
+    nome: "Bileco Joe",
     tipo: "Mamífero",
     especie: "Cachorro",
     popularidade: 7,
-    inteligencia: 2,
-    filme: true,
-    imagem: "images/bird.png"
-  },
-  
-   {
-    nome: "Biloco",
-    tipo: "Mamífero",
-    especie: "Cachorro",
-    popularidade: 8,
     inteligencia: 1,
+    altura: 8,
+    forca: 0,
+    agressividade: 3,
     filme: true,
     imagem: "images/bird.png"
   },
-  
-   {
-    nome: "Bituto",
+  {
+    nome: "Biloco Joe",
     tipo: "Mamífero",
     especie: "Cachorro",
-    popularidade: 4,
-    inteligencia: 5,
+    popularidade: 7,
+    inteligencia: 0,
+    altura: 8,
+    forca: 1,
+    agressividade: 2,
     filme: true,
     imagem: "images/bird.png"
   },
-  
-   {
+  {
+    nome: "Bituto Joe",
+    tipo: "Mamífero",
+    especie: "Cachorro",
+    popularidade: 2,
+    inteligencia: 5,
+    altura: 20,
+    forca: 4,
+    agressividade: 3,
+    filme: true,
+    imagem: "images/bird.png"
+  },
+  {
     nome: "Diugungu",
     tipo: "Mamífero",
     especie: "Urso Polar",
     popularidade: 5,
     inteligencia: 7,
+    altura: 25,
+    forca: 9,
+    agressividade: 7,
     filme: false,
     imagem: "images/bird.png"
   },
-  
-   {
+  {
     nome: "Dentinho Dente",
     tipo: "Mamífero",
     especie: "Morsa",
     popularidade: 7,
     inteligencia: 7,
+    altura: 27,
+    forca: 8,
+    agressividade: 4,
     filme: false,
     imagem: "images/bird.png"
   },
-  
-   {
+  {
     nome: "Bib Duá",
     tipo: "Mamífero",
     especie: "Tamanduá",
-    popularidade: 4,
+    popularidade: 3,
     inteligencia: 6,
+    altura: 20,
+    forca: 6,
+    agressividade: 3,
     filme: false,
     imagem: "images/bird.png"
   },
-
-  
-   {
+  {
     nome: "Bib Uso",
     tipo: "Mamífero",
     especie: "Urso",
     popularidade: 2,
     inteligencia: 6,
+    altura: 19,
+    forca: 8,
+    agressividade: 1,
     filme: false,
     imagem: "images/bird.png"
   },
-  
-   {
+  {
     nome: "Foot-lix",
     tipo: "Ave",
     especie: "Galo",
     popularidade: 2,
     inteligencia: 5,
+    altura: 26,
+    forca: 3,
+    agressividade: 6,
     filme: false,
     imagem: "images/bird.png"
   },
-
-  
-   {
+  {
     nome: "Bob Tucano",
     tipo: "Ave",
     especie: "Tucano",
-    popularidade: 5,
+    popularidade: 4,
     inteligencia: 5,
+    altura: 15,
+    forca: 3,
+    agressividade: 4,
     filme: false,
     imagem: "images/bird.png"
   },
-  
-   {
-    nome: "Pipoca",
+  {
+    nome: "Pipoca Piruá",
     tipo: "Mamífero",
     especie: "Cachorro",
-    popularidade: 6,
+    popularidade: 7,
     inteligencia: 8,
+    altura: 27,
+    forca: 6,
+    agressividade: 4,
     filme: false,
     imagem: "images/bird.png"
   },
-
-  
-   {
-    nome: "Patric 2",
+  {
+    nome: "Patrick Dois",
     tipo: "Invertebrado",
     especie: "Estrela-do-mar",
+    popularidade: 6,
+    inteligencia: 4,
+    altura: 38,
+    forca: 4,
+    agressividade: 3,
+    filme: false,
+    imagem: "images/bird.png"
+  },
+    {
+    nome: "Albert Einstein",
+    tipo: "Mamífero",
+    especie: "Homo Sapiens",
     popularidade: 3,
-    inteligencia: 3,
+    inteligencia: 10,
+    altura: 8,
+    forca: 3,
+    agressividade: 0,
+    filme: false,
+    imagem: "images/bird.png"
+  },
+    {
+    nome: "Marty Zebra",
+    tipo: "Mamífero",
+    especie: "Zebra",
+    popularidade: 2,
+    inteligencia: 5,
+    altura: 18,
+    forca: 6,
+    agressividade: 5,
+    filme: false,
+    imagem: "images/bird.png"
+  },
+      {
+    nome: "Terrierzinho Souza",
+    tipo: "Mamífero",
+    especie: "Cachorro",
+    popularidade: 3,
+    inteligencia: 1,
+    altura: 7,
+    forca: 2,
+    agressividade: 5,
+    filme: false,
+    imagem: "images/bird.png"
+  },
+      {
+    nome: "Nick Dog",
+    tipo: "Mamífero",
+    especie: "Cachorro",
+    popularidade: 7,
+    inteligencia: 7,
+    altura: 38,
+    forca: 9,
+    agressividade: 5,
+    filme: false,
+    imagem: "images/bird.png"
+  },
+      {
+    nome: "Sir Rowlen",
+    tipo: "Mamífero",
+    especie: "Gato",
+    popularidade: 2,
+    inteligencia: 5,
+    altura: 6,
+    forca: 3,
+    agressividade: 7,
+    filme: false,
+    imagem: "images/bird.png"
+  },
+      {
+    nome: "Dyno Saur",
+    tipo: "Réptil",
+    especie: "T-Rex",
+    popularidade: 4,
+    inteligencia: 8,
+    altura: 21,
+    forca: 10,
+    agressividade: 9,
+    filme: false,
+    imagem: "images/bird.png"
+  },
+      {
+    nome: "Dinoplinho Mesozóico",
+    tipo: "Réptil",
+    especie: "Diplodocus",
+    popularidade: 4,
+    inteligencia: 8,
+    altura: 14,
+    forca: 10,
+    agressividade: 5,
+    filme: false,
+    imagem: "images/bird.png"
+  },
+      {
+    nome: "Barack Obama",
+    tipo: "Mamífero",
+    especie: "Cachorro",
+    popularidade: 3,
+    inteligencia: 8,
+    altura: 12,
+    forca: 5,
+    agressividade: 3,
+    filme: false,
+    imagem: "images/bird.png"
+  },
+      {
+    nome: "Coelita Zanahorita",
+    tipo: "Mamífero",
+    especie: "Coelho",
+    popularidade: 3,
+    inteligencia: 7,
+    altura: 22,
+    forca: 2,
+    agressividade: 1,
     filme: false,
     imagem: "images/bird.png"
   }
@@ -484,29 +674,11 @@ function adicionarLinhaTabela(personagem, ehRespostaFinal) {
   adicionarCelula(linha, personagem.tipo, personagem.tipo === secreto.tipo);
   adicionarCelula(linha, personagem.especie, personagem.especie === secreto.especie);
 
-  let popularidadeTexto = personagem.popularidade;
-
-  if (personagem.popularidade < secreto.popularidade) {
-    popularidadeTexto += " ↑";
-  } else if (personagem.popularidade > secreto.popularidade) {
-    popularidadeTexto += " ↓";
-  }
-
-  adicionarCelula(linha, popularidadeTexto, personagem.popularidade === secreto.popularidade);
-
-  let inteligenciaTexto = personagem.inteligencia;
-
-  if (personagem.inteligencia < secreto.inteligencia) {
-    inteligenciaTexto += " ↑";
-  } else if (personagem.inteligencia > secreto.inteligencia) {
-    inteligenciaTexto += " ↓";
-  }
-
-  adicionarCelula(
-    linha,
-    inteligenciaTexto,
-    personagem.inteligencia === secreto.inteligencia
-  );
+  adicionarCelulaNumerica(linha, personagem.popularidade, secreto.popularidade);
+  adicionarCelulaNumerica(linha, personagem.inteligencia, secreto.inteligencia);
+  adicionarCelulaNumerica(linha, personagem.altura, secreto.altura);
+  adicionarCelulaNumerica(linha, personagem.forca, secreto.forca);
+  adicionarCelulaNumerica(linha, personagem.agressividade, secreto.agressividade);
 
   adicionarCelula(
     linha,
@@ -522,6 +694,18 @@ function adicionarLinhaTabela(personagem, ehRespostaFinal) {
   img.className = "imagem-personagem";
 
   celulaImagem.appendChild(img);
+}
+
+function adicionarCelulaNumerica(linha, valor, valorSecreto) {
+  let texto = valor;
+
+  if (valor < valorSecreto) {
+    texto += " ↑";
+  } else if (valor > valorSecreto) {
+    texto += " ↓";
+  }
+
+  adicionarCelula(linha, texto, valor === valorSecreto);
 }
 
 function adicionarCelula(linha, texto, correto) {
@@ -550,8 +734,7 @@ function salvarEstadoParcial() {
     data: hoje,
     tentativas: obterNomesDasTentativas(),
     encerrado: false,
-    venceu: false,
-    estatisticaRegistrada: false
+    venceu: false
   };
 
   localStorage.setItem(
@@ -565,8 +748,7 @@ function salvarResultadoDiario(venceu) {
     data: hoje,
     tentativas: obterNomesDasTentativas(),
     encerrado: true,
-    venceu: venceu,
-    estatisticaRegistrada: true
+    venceu: venceu
   };
 
   localStorage.setItem(
@@ -630,6 +812,8 @@ function obterEstatisticas() {
       diasJogados: 0,
       vitorias: 0,
       derrotas: 0,
+      sequenciaAtual: 0,
+      maiorSequencia: 0,
       acertosPorTentativa: {
         1: 0,
         2: 0,
@@ -638,6 +822,14 @@ function obterEstatisticas() {
         5: 0
       }
     };
+  }
+
+  if (estatisticas.sequenciaAtual === undefined) {
+    estatisticas.sequenciaAtual = 0;
+  }
+
+  if (estatisticas.maiorSequencia === undefined) {
+    estatisticas.maiorSequencia = 0;
   }
 
   return estatisticas;
@@ -651,8 +843,16 @@ function atualizarEstatisticas(venceu, numeroTentativa) {
   if (venceu) {
     estatisticas.vitorias++;
     estatisticas.acertosPorTentativa[numeroTentativa]++;
+
+    estatisticas.sequenciaAtual++;
+
+    if (estatisticas.sequenciaAtual > estatisticas.maiorSequencia) {
+      estatisticas.maiorSequencia = estatisticas.sequenciaAtual;
+    }
+
   } else {
     estatisticas.derrotas++;
+    estatisticas.sequenciaAtual = 0;
   }
 
   localStorage.setItem(
@@ -667,6 +867,8 @@ function atualizarEstatisticasNaTela() {
   document.getElementById("statDias").innerText = estatisticas.diasJogados;
   document.getElementById("statVitorias").innerText = estatisticas.vitorias;
   document.getElementById("statDerrotas").innerText = estatisticas.derrotas;
+  document.getElementById("statSequenciaAtual").innerText = estatisticas.sequenciaAtual;
+  document.getElementById("statMaiorSequencia").innerText = estatisticas.maiorSequencia;
 
   document.getElementById("stat1").innerText = estatisticas.acertosPorTentativa[1];
   document.getElementById("stat2").innerText = estatisticas.acertosPorTentativa[2];
@@ -703,7 +905,7 @@ function gerarResultadoCompartilhavel(venceu) {
 
     const celulas = linha.querySelectorAll("td");
 
-    for (let j = 1; j <= 5; j++) {
+    for (let j = 1; j <= 8; j++) {
       texto += celulas[j].className === "correto" ? "🟩" : "⬛";
     }
 
