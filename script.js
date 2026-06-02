@@ -253,7 +253,7 @@ const personagens = [
     forca: 6,
     agressividade: 2,
     filme: true,
-    imagem: "images/bird.png"
+    imagem: "images/joeteco.png"
   },
   {
     nome: "Bileco Joe",
@@ -265,7 +265,7 @@ const personagens = [
     forca: 0,
     agressividade: 3,
     filme: true,
-    imagem: "images/bird.png"
+    imagem: "images/bileco.png"
   },
   {
     nome: "Biloco Joe",
@@ -277,7 +277,7 @@ const personagens = [
     forca: 1,
     agressividade: 2,
     filme: true,
-    imagem: "images/bird.png"
+    imagem: "images/biloco.png"
   },
   {
     nome: "Bituto Joe",
@@ -301,7 +301,7 @@ const personagens = [
     forca: 9,
     agressividade: 7,
     filme: false,
-    imagem: "images/bird.png"
+    imagem: "images/diugungu.png"
   },
   {
     nome: "Dentinho Dente",
@@ -313,7 +313,7 @@ const personagens = [
     forca: 8,
     agressividade: 4,
     filme: false,
-    imagem: "images/bird.png"
+    imagem: "images/dentinho.png"
   },
   {
     nome: "Bib Duá",
@@ -325,7 +325,7 @@ const personagens = [
     forca: 6,
     agressividade: 3,
     filme: false,
-    imagem: "images/bird.png"
+    imagem: "images/bibdua.png"
   },
   {
     nome: "Bib Uso",
@@ -337,7 +337,7 @@ const personagens = [
     forca: 8,
     agressividade: 1,
     filme: false,
-    imagem: "images/bird.png"
+    imagem: "images/bibuso.png"
   },
   {
     nome: "Foot-lix",
@@ -349,7 +349,7 @@ const personagens = [
     forca: 3,
     agressividade: 6,
     filme: false,
-    imagem: "images/bird.png"
+    imagem: "images/footlix.jpg"
   },
   {
     nome: "Bob Tucano",
@@ -361,7 +361,7 @@ const personagens = [
     forca: 3,
     agressividade: 4,
     filme: false,
-    imagem: "images/bird.png"
+    imagem: "images/tucano.png"
   },
   {
     nome: "Pipoca Piruá",
@@ -373,7 +373,7 @@ const personagens = [
     forca: 6,
     agressividade: 4,
     filme: false,
-    imagem: "images/bird.png"
+    imagem: "images/pipoca.png"
   },
   {
     nome: "Patrick Dois",
@@ -385,7 +385,7 @@ const personagens = [
     forca: 4,
     agressividade: 3,
     filme: false,
-    imagem: "images/bird.png"
+    imagem: "images/patrick.png"
   },
     {
     nome: "Albert Einstein",
@@ -397,7 +397,7 @@ const personagens = [
     forca: 3,
     agressividade: 0,
     filme: false,
-    imagem: "images/bird.png"
+    imagem: "images/einstein.png"
   },
     {
     nome: "Marty Zebra",
@@ -409,7 +409,7 @@ const personagens = [
     forca: 6,
     agressividade: 5,
     filme: false,
-    imagem: "images/bird.png"
+    imagem: "images/marty.png"
   },
       {
     nome: "Terrierzinho Souza",
@@ -421,7 +421,7 @@ const personagens = [
     forca: 2,
     agressividade: 5,
     filme: false,
-    imagem: "images/bird.png"
+    imagem: "images/terrier.png"
   },
       {
     nome: "Nick Dog",
@@ -433,7 +433,7 @@ const personagens = [
     forca: 9,
     agressividade: 5,
     filme: false,
-    imagem: "images/bird.png"
+    imagem: "images/nick.png"
   },
       {
     nome: "Sir Rowlen",
@@ -445,7 +445,7 @@ const personagens = [
     forca: 3,
     agressividade: 7,
     filme: false,
-    imagem: "images/bird.png"
+    imagem: "images/rowlen.png"
   },
       {
     nome: "Dyno Saur",
@@ -457,7 +457,7 @@ const personagens = [
     forca: 10,
     agressividade: 9,
     filme: false,
-    imagem: "images/bird.png"
+    imagem: "images/dyno.png"
   },
       {
     nome: "Dinoplinho Mesozóico",
@@ -469,7 +469,7 @@ const personagens = [
     forca: 10,
     agressividade: 5,
     filme: false,
-    imagem: "images/bird.png"
+    imagem: "images/dinoplinho.png"
   },
       {
     nome: "Barack Obama",
@@ -481,7 +481,7 @@ const personagens = [
     forca: 5,
     agressividade: 3,
     filme: false,
-    imagem: "images/bird.png"
+    imagem: "images/obama.png"
   },
       {
     nome: "Coelita Zanahorita",
@@ -493,7 +493,7 @@ const personagens = [
     forca: 2,
     agressividade: 1,
     filme: false,
-    imagem: "images/bird.png"
+    imagem: "images/coelita.png"
   }
 ];
 
