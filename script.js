@@ -387,7 +387,7 @@ const personagens = [
     filme: false,
     imagem: "images/patrick.png"
   },
-    {
+  {
     nome: "Albert Einstein",
     tipo: "Mamífero",
     especie: "Homo Sapiens",
@@ -399,7 +399,7 @@ const personagens = [
     filme: false,
     imagem: "images/einstein.png"
   },
-    {
+  {
     nome: "Marty Zebra",
     tipo: "Mamífero",
     especie: "Zebra",
@@ -411,7 +411,7 @@ const personagens = [
     filme: false,
     imagem: "images/marty.png"
   },
-      {
+  {
     nome: "Terrierzinho Souza",
     tipo: "Mamífero",
     especie: "Cachorro",
@@ -423,7 +423,7 @@ const personagens = [
     filme: false,
     imagem: "images/terrier.png"
   },
-      {
+  {
     nome: "Nick Dog",
     tipo: "Mamífero",
     especie: "Cachorro",
@@ -435,7 +435,7 @@ const personagens = [
     filme: false,
     imagem: "images/nick.png"
   },
-      {
+  {
     nome: "Sir Rowlen",
     tipo: "Mamífero",
     especie: "Gato",
@@ -447,7 +447,7 @@ const personagens = [
     filme: false,
     imagem: "images/rowlen.png"
   },
-      {
+  {
     nome: "Dyno Saur",
     tipo: "Réptil",
     especie: "T-Rex",
@@ -459,7 +459,7 @@ const personagens = [
     filme: false,
     imagem: "images/dyno.png"
   },
-      {
+  {
     nome: "Dinoplinho Mesozóico",
     tipo: "Réptil",
     especie: "Diplodocus",
@@ -471,7 +471,7 @@ const personagens = [
     filme: false,
     imagem: "images/dinoplinho.png"
   },
-      {
+  {
     nome: "Barack Obama",
     tipo: "Mamífero",
     especie: "Cachorro",
@@ -483,7 +483,7 @@ const personagens = [
     filme: false,
     imagem: "images/obama.png"
   },
-      {
+  {
     nome: "Coelita Zanahorita",
     tipo: "Mamífero",
     especie: "Coelho",
@@ -508,6 +508,7 @@ document.addEventListener("DOMContentLoaded", function () {
   sugestoes = document.getElementById("sugestoes");
 
   iniciarJogo();
+  montarPokedex();
 
   input.addEventListener("input", mostrarSugestoes);
 
@@ -632,6 +633,10 @@ function jogar() {
 
     salvarResultadoDiario(true);
     atualizarEstatisticas(true, tentativas);
+
+    desbloquearPersonagem(secreto.nome);
+    montarPokedex();
+
     encerrarJogo(true);
 
     alert(
@@ -794,6 +799,11 @@ function restaurarJogoSalvo(jogoSalvo) {
   if (jogoSalvo.encerrado) {
     jogoEncerrado = true;
 
+    if (jogoSalvo.venceu) {
+      desbloquearPersonagem(secreto.nome);
+      montarPokedex();
+    }
+
     if (!jogoSalvo.venceu) {
       adicionarLinhaTabela(secreto, true);
     }
@@ -849,7 +859,6 @@ function atualizarEstatisticas(venceu, numeroTentativa) {
     if (estatisticas.sequenciaAtual > estatisticas.maiorSequencia) {
       estatisticas.maiorSequencia = estatisticas.sequenciaAtual;
     }
-
   } else {
     estatisticas.derrotas++;
     estatisticas.sequenciaAtual = 0;
@@ -924,4 +933,72 @@ function copiarResultado() {
   navigator.clipboard.writeText(textarea.value);
 
   alert("Resultado copiado!");
+}
+
+function obterPersonagensDesbloqueados() {
+  const desbloqueados = JSON.parse(
+    localStorage.getItem("joetecolePokedex")
+  );
+
+  return desbloqueados || [];
+}
+
+function salvarPersonagensDesbloqueados(desbloqueados) {
+  localStorage.setItem(
+    "joetecolePokedex",
+    JSON.stringify(desbloqueados)
+  );
+}
+
+function desbloquearPersonagem(nomePersonagem) {
+  const desbloqueados = obterPersonagensDesbloqueados();
+
+  if (!desbloqueados.includes(nomePersonagem)) {
+    desbloqueados.push(nomePersonagem);
+    salvarPersonagensDesbloqueados(desbloqueados);
+  }
+}
+
+function montarPokedex() {
+  const grade = document.getElementById("gradePokedex");
+  const progresso = document.getElementById("pokedexProgresso");
+
+  if (!grade || !progresso) {
+    return;
+  }
+
+  const desbloqueados = obterPersonagensDesbloqueados();
+
+  grade.innerHTML = "";
+
+  personagens.forEach(personagem => {
+    const slot = document.createElement("div");
+    slot.className = "pokedex-slot";
+
+    if (desbloqueados.includes(personagem.nome)) {
+      const img = document.createElement("img");
+      img.src = personagem.imagem;
+      img.alt = personagem.nome;
+      img.title = personagem.nome;
+
+      slot.appendChild(img);
+    } else {
+      slot.innerText = "?";
+      slot.title = "Personagem bloqueado";
+    }
+
+    grade.appendChild(slot);
+  });
+
+  const totalSlots = 42;
+  const slotsVazios = totalSlots - personagens.length;
+
+  for (let i = 0; i < slotsVazios; i++) {
+    const slotVazio = document.createElement("div");
+    slotVazio.className = "pokedex-slot pokedex-vazio";
+    grade.appendChild(slotVazio);
+  }
+
+  progresso.innerText =
+    desbloqueados.length + "/" + personagens.length + " desbloqueados";
 }
