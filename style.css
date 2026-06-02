@@ -1,29 +1,77 @@
-body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  background-color: #f5f5f5;
+* {
+  box-sizing: border-box;
 }
 
-h1 {
-  margin-bottom: 10px;
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #edf1f5;
+  color: #263238;
+}
+
+.container {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.cabecalho {
+  background: linear-gradient(135deg, #354f52, #52796f);
+  color: white;
+  padding: 24px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.cabecalho h1 {
+  margin: 0;
+  font-size: 36px;
+}
+
+.cabecalho p {
+  margin: 8px 0 0;
+  opacity: 0.9;
+}
+
+.painel-jogo {
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid #d8dee4;
+  margin-bottom: 20px;
+}
+
+#dataDesafio,
+#tentativasTexto {
+  margin: 6px 0;
+  font-weight: bold;
 }
 
 .area-jogo {
   display: flex;
   gap: 10px;
   align-items: flex-start;
+  margin-top: 12px;
 }
 
 .autocomplete-container {
   position: relative;
-  width: 320px;
+  width: 340px;
 }
 
 #guessInput {
   width: 100%;
-  box-sizing: border-box;
-  padding: 10px;
+  padding: 11px;
   font-size: 16px;
+  border: 1px solid #b0bec5;
+  border-radius: 8px;
+}
+
+#guessInput:focus {
+  outline: none;
+  border-color: #52796f;
+  box-shadow: 0 0 0 3px rgba(82, 121, 111, 0.18);
 }
 
 #sugestoes {
@@ -31,30 +79,38 @@ h1 {
   top: 100%;
   left: 0;
   width: 100%;
-  box-sizing: border-box;
-  background-color: white;
-  border: 1px solid #ccc;
+  background: white;
+  border: 1px solid #b0bec5;
   border-top: none;
   z-index: 9999;
   max-height: 220px;
   overflow-y: auto;
+  border-radius: 0 0 8px 8px;
 }
 
 .sugestao {
   padding: 10px;
   cursor: pointer;
-  color: black;
-  background-color: white;
+  color: #263238;
+  background: white;
 }
 
 .sugestao:hover {
-  background-color: #eeeeee;
+  background-color: #edf6f2;
 }
 
 button {
-  padding: 10px;
+  padding: 11px 16px;
   font-size: 16px;
   cursor: pointer;
+  background: #52796f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}
+
+button:hover {
+  background: #3f6259;
 }
 
 button:disabled {
@@ -62,25 +118,38 @@ button:disabled {
   opacity: 0.6;
 }
 
+.tabela-container {
+  overflow-x: auto;
+}
+
 table {
   margin-top: 20px;
   border-collapse: collapse;
-  background-color: white;
+  background: white;
+  min-width: 1100px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th {
+  background: #cad2c5;
+  color: #263238;
 }
 
 th, td {
-  border: 1px solid black;
+  border: 1px solid #d8dee4;
   padding: 10px;
   text-align: center;
 }
 
 .correto {
-  background-color: #4CAF50;
+  background-color: #6a994e;
   color: white;
+  font-weight: bold;
 }
 
 .errado {
-  background-color: #777;
+  background-color: #7d8590;
   color: white;
 }
 
@@ -92,32 +161,83 @@ th, td {
 }
 
 .linha-resposta {
-  border: 3px solid #4CAF50;
+  outline: 4px solid #6a994e;
 }
 
 #compartilhar {
   display: none;
   margin-top: 25px;
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid #d8dee4;
 }
 
 textarea {
   font-size: 18px;
   padding: 10px;
   resize: none;
+  border-radius: 8px;
+  border: 1px solid #b0bec5;
 }
 
-#estatisticas {
+.area-inferior {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
   margin-top: 30px;
-  padding: 15px;
-  background-color: white;
-  border: 1px solid #ccc;
+  flex-wrap: wrap;
+}
+
+#estatisticas,
+#pokedex {
+  padding: 18px;
+  background: white;
+  border: 1px solid #d8dee4;
+  border-radius: 12px;
   width: fit-content;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
 }
 
-table {
-  min-width: 1000px;
+#estatisticas h3,
+#pokedex h3 {
+  margin-top: 0;
+  color: #354f52;
 }
 
-body {
-  overflow-x: auto;
+#estatisticas span {
+  font-weight: bold;
+  color: #52796f;
+}
+
+#gradePokedex {
+  display: grid;
+  grid-template-columns: repeat(7, 76px);
+  grid-template-rows: repeat(6, 76px);
+  gap: 8px;
+}
+
+.pokedex-slot {
+  width: 76px;
+  height: 76px;
+  border: 1px solid #aeb7bf;
+  background: #354f52;
+  color: #cad2c5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.pokedex-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pokedex-vazio {
+  background: transparent;
+  border: 1px dashed #b0bec5;
 }
