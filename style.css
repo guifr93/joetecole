@@ -113,3 +113,11 @@ textarea {
   border: 1px solid #ccc;
   width: fit-content;
 }
+
+table {
+  min-width: 1000px;
+}
+
+body {
+  overflow-x: auto;
+}
