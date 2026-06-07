@@ -538,18 +538,33 @@ function obterDataHoje() {
 }
 
 function obterPersonagemDoDia() {
+
   const dataInicial = new Date(2026, 0, 1);
-  const dataAtual = new Date();
 
-  dataAtual.setHours(0, 0, 0, 0);
+  const hoje = new Date();
+  hoje.setHours(0,0,0,0);
 
-  const diferencaEmDias = Math.floor(
-    (dataAtual - dataInicial) / (1000 * 60 * 60 * 24)
+  const dias = Math.floor(
+    (hoje - dataInicial) / (1000 * 60 * 60 * 24)
   );
 
-  const indice = diferencaEmDias % personagens.length;
+  const personagensEmbaralhados = [...personagens];
 
-  return personagens[indice];
+  let seed = 12345;
+
+  for (let i = personagensEmbaralhados.length - 1; i > 0; i--) {
+
+    seed = (seed * 1664525 + 1013904223) % 4294967296;
+
+    const j = seed % (i + 1);
+
+    [personagensEmbaralhados[i], personagensEmbaralhados[j]] =
+    [personagensEmbaralhados[j], personagensEmbaralhados[i]];
+  }
+
+  return personagensEmbaralhados[
+    dias % personagensEmbaralhados.length
+  ];
 }
 
 function iniciarJogo() {
