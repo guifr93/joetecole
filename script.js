@@ -432,7 +432,7 @@ const personagens = [
     altura: 38,
     forca: 9,
     agressividade: 5,
-    filme: false,
+    filme: true,
     imagem: "images/nick.png"
   },
   {
