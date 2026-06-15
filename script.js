@@ -935,9 +935,7 @@ function gerarResultadoCompartilhavel(venceu) {
       texto += "\n";
     
   }
-    texto += "\nSequência atual: ";
-    texto += sequenciaAtual;
-    texto += "\n";
+   
   return texto;
 }
 
