@@ -932,12 +932,12 @@ function gerarResultadoCompartilhavel(venceu) {
     for (let j = 1; j <= 8; j++) {
       texto += celulas[j].className === "correto" ? "🟩" : "⬛";
     }
-
+      texto += "\n";
+    
+  }
     texto += "\nSequência atual: ";
     texto += sequenciaAtual;
     texto += "\n";
-  }
-
   return texto;
 }
 
