@@ -933,6 +933,8 @@ function gerarResultadoCompartilhavel(venceu) {
       texto += celulas[j].className === "correto" ? "🟩" : "⬛";
     }
 
+    texto += "\nSequência atual: ";
+    texto += sequenciaAtual;
     texto += "\n";
   }
 
