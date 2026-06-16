@@ -539,7 +539,7 @@ function obterDataHoje() {
 
 function obterPersonagemDoDia() {
 
-  const dataInicial = new Date(2026, 0, 1);
+  const dataInicial = new Date(2026, 4, 29);
 
   const hoje = new Date();
   hoje.setHours(0,0,0,0);
@@ -569,7 +569,7 @@ function obterPersonagemDoDia() {
 
 function iniciarJogo() {
   document.getElementById("dataDesafio").innerText =
-    "Desafio diário: " + hoje;
+  "Joeteco.le #" + obterNumeroDoJogo();
 
   atualizarEstatisticasNaTela();
 
@@ -910,13 +910,25 @@ function mostrarCompartilhamento(venceu) {
 }
 
 function gerarResultadoCompartilhavel(venceu) {
-  let texto = "Joeteco.le " + hoje + "\njoetecole.netlify.app\n";
+  const estatisticas = obterEstatisticas();
+  const clube = obterClubeSequencia(estatisticas.sequenciaAtual);
+
+  let texto =
+  "Joeteco.le #" +
+  obterNumeroDoJogo() +
+  "\njoetecole.netlify.app\n";
 
   if (venceu) {
-    texto += tentativas + "/" + maxTentativas + "\n\n";
+    texto += tentativas + "/" + maxTentativas + "\n";
   } else {
-    texto += "X/" + maxTentativas + "\n\n";
+    texto += "X/" + maxTentativas + "\n";
   }
+
+  texto += "Sequência atual: " +
+    estatisticas.sequenciaAtual +
+    " vitória(s)\n";
+
+  texto += clube.emoji + " " + clube.nome + "\n\n";
 
   const linhas = document.querySelectorAll("#resultado tr");
 
@@ -937,6 +949,62 @@ function gerarResultadoCompartilhavel(venceu) {
   }
 
   return texto;
+}
+
+function obterClubeSequencia(sequencia) {
+  if (sequencia >= 500) {
+    return {
+      nome: "Joelândia's VIP",
+      emoji: "👑"
+    };
+  }
+
+  if (sequencia >= 250) {
+    return {
+      nome: "obsidian club",
+      emoji: "🖤"
+    };
+  }
+
+  if (sequencia >= 100) {
+    return {
+      nome: "diamond club",
+      emoji: "💎"
+    };
+  }
+
+  if (sequencia >= 50) {
+    return {
+      nome: "gold club",
+      emoji: "🥇"
+    };
+  }
+
+  if (sequencia >= 10) {
+    return {
+      nome: "silver club",
+      emoji: "🥈"
+    };
+  }
+
+  return {
+    nome: "bronze club",
+    emoji: "🥉"
+  };
+}
+
+function obterNumeroDoJogo() {
+
+  const dataInicial = new Date(2026, 4, 29);
+
+  const hoje = new Date();
+  hoje.setHours(0, 0, 0, 0);
+
+  const dias = Math.floor(
+    (hoje - dataInicial) / (1000 * 60 * 60 * 24)
+  );
+
+  return dias + 1;
 }
 
 function copiarResultado() {
