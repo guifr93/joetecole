@@ -910,13 +910,25 @@ function mostrarCompartilhamento(venceu) {
 }
 
 function gerarResultadoCompartilhavel(venceu) {
+
   const estatisticas = obterEstatisticas();
   const clube = obterClubeSequencia(estatisticas.sequenciaAtual);
 
+  const desbloqueados =
+    obterPersonagensDesbloqueados().length;
+
+  const totalPersonagens =
+    personagens.length;
+
+  const porcentagem =
+    Math.round(
+      (desbloqueados / totalPersonagens) * 100
+    );
+
   let texto =
-  "Joeteco.le #" +
-  obterNumeroDoJogo() +
-  "\njoetecole.netlify.app\n";
+    "Joeteco.le #" +
+    obterNumeroDoJogo() +
+    "\njoetecole.netlify.app\n\n";
 
   if (venceu) {
     texto += tentativas + "/" + maxTentativas + "\n";
@@ -924,15 +936,30 @@ function gerarResultadoCompartilhavel(venceu) {
     texto += "X/" + maxTentativas + "\n";
   }
 
-  texto += "Sequência atual: " +
+  texto +=
+    "Sequência atual: " +
     estatisticas.sequenciaAtual +
     " vitória(s)\n";
 
-  texto += clube.emoji + " " + clube.nome + "\n\n";
+  texto +=
+    clube.emoji +
+    " " +
+    clube.nome +
+    "\n";
+
+  texto +=
+    "📖 Pokédex: " +
+    desbloqueados +
+    "/" +
+    totalPersonagens +
+    " (" +
+    porcentagem +
+    "%)\n\n";
 
   const linhas = document.querySelectorAll("#resultado tr");
 
   for (let i = 1; i < linhas.length; i++) {
+
     const linha = linhas[i];
 
     if (linha.dataset.respostaFinal === "true") {
@@ -942,7 +969,11 @@ function gerarResultadoCompartilhavel(venceu) {
     const celulas = linha.querySelectorAll("td");
 
     for (let j = 1; j <= 8; j++) {
-      texto += celulas[j].className === "correto" ? "🟩" : "⬛";
+
+      texto +=
+        celulas[j].className === "correto"
+          ? "🟩"
+          : "⬛";
     }
 
     texto += "\n";
@@ -952,21 +983,14 @@ function gerarResultadoCompartilhavel(venceu) {
 }
 
 function obterClubeSequencia(sequencia) {
-  if (sequencia >= 500) {
+  if (sequencia >= 100) {
     return {
       nome: "Joelândia's VIP",
       emoji: "👑"
     };
   }
 
-  if (sequencia >= 250) {
-    return {
-      nome: "obsidian club",
-      emoji: "🖤"
-    };
-  }
-
-  if (sequencia >= 100) {
+  if (sequencia >= 75) {
     return {
       nome: "diamond club",
       emoji: "💎"
@@ -980,16 +1004,22 @@ function obterClubeSequencia(sequencia) {
     };
   }
 
-  if (sequencia >= 10) {
+  if (sequencia >= 25) {
     return {
       nome: "silver club",
       emoji: "🥈"
     };
   }
 
+  if (sequencia >= 10){
   return {
     nome: "bronze club",
     emoji: "🥉"
+  };
+  }
+  return{
+    nome: "rookie club",
+    emoji: "🏅"
   };
 }
 
